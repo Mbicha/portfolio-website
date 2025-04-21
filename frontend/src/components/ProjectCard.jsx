@@ -14,13 +14,13 @@ const ProjectCard = () => {
 
     useEffect(() => {
         const isUserAdmin = () => {
-            if (token){
+            if (token) {
                 setIsAdmin(true);
             }
         }
 
         isUserAdmin();
-    },[token])
+    }, [token])
 
     useEffect(() => {
         const getProjects = async () => {
@@ -30,15 +30,12 @@ const ProjectCard = () => {
             } catch (error) {
                 // Handle errors
                 console.error("Error fetching projects:", error);
-                // You might want to set an error state here
             }
         };
 
         getProjects();
 
-        // Add cleanup function if needed
         return () => {
-            // Cancel ongoing requests if component unmounts
         };
     }, [projects]); // Add dependencies if needed
 
@@ -81,7 +78,7 @@ const ProjectCard = () => {
                             {err ? (
                                 <p className="w-full p-1 bg-red-600 text-white mt-1">{err}</p>
                             ) : (
-                                <div className="flex flex-wrap gap-2 mt-1"> 
+                                <div className="flex flex-wrap gap-2 mt-1">
                                     {project.tech_stack?.map((tech, index) => (
                                         <div
                                             key={index}
@@ -98,7 +95,7 @@ const ProjectCard = () => {
                             {isAdmin ? (
                                 <>
                                     <PLink
-                                        url={project.url}
+                                        url="/projects"
                                         value="Visit"
                                     />
                                     <PButton
@@ -114,7 +111,11 @@ const ProjectCard = () => {
                                     />
                                 </>
                             ) : (
-                                <PLink url={project.url} value="Visit" />
+                                <PLink
+                                    url={project.url}
+                                    value="Visit"
+                                    onError={() => alert("This project is currently unavailable.")}
+                                />
                             )}
                         </div>
                     </div>

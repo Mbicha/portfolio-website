@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
  * A reusable link component for navigation within the application.
  * 
  * Props:
- * - url (string, default: "to"): The URL or path to navigate to.
+ * - url (string, default: "/projects"): The URL or path to navigate to.
  * - value (string, default: "Link"): The text displayed inside the link.
  * - bgColor (string, default: "#1d4ed8"): The background color of the link.
  * 
@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
  * ```
  */
 
-const PLink = ({ url = "to", value = "Link", bgColor = "#1d4ed8" }) => {
+const PLink = ({ url = "/projects", value = "Link", bgColor = "#1d4ed8" }) => {
     const isExternalUrl = url.startsWith("http");
 
     return isExternalUrl ? (
