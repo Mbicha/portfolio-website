@@ -12,7 +12,6 @@ const EditProject = () => {
     const [formData, setFormData] = useState({
         title: "",
         description: "",
-        tech_stack: "",
     });
 
     // Get userId correctly from sessionStorage
@@ -32,7 +31,6 @@ const EditProject = () => {
                 setFormData({
                     title: project.title,
                     description: project.description,
-                    tech_stack: project.tech_stack?.join(", "),
                 });
             } catch (error) {
                 setErr("Failed to load project");
@@ -64,9 +62,6 @@ const EditProject = () => {
             const payload = {
                 ...formData,
                 user_id: userId, // Include userId in payload
-                tech_stack: formData.tech_stack.split(",")
-                    .map(tech => tech.trim())
-                    .filter(tech => tech.length > 0) // Filter out empty strings
             };
 
             if (id) {
@@ -121,16 +116,6 @@ const EditProject = () => {
                         placeholder="Description..."
                         changeListener={onFormChange}
                         required
-                    />
-                </div>
-
-                <div className="flex w-full justify-center">
-                    <TextBox
-                        type="text"
-                        name="tech_stack"
-                        value={formData.tech_stack}
-                        placeholder="Tech Stack e.g HTML, CSS, ReactJS"
-                        changeListener={onFormChange}
                     />
                 </div>
 

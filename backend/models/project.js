@@ -14,18 +14,8 @@ const ProjectSchema = new Schema({
         unique: true
     },
     description: {
-        type: String, 
+        type: String,
         minlength: 50
-    },
-    tech_stack: {
-        type: [String],
-        validate: {
-            validator: function(arr){
-                return arr.length > 0;
-            },
-
-            message: "Specify At Least 1 Technology"
-        }
     },
     createdAt: {type: Date, default: Date.now}
 });
